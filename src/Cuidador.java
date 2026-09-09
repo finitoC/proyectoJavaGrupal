@@ -52,6 +52,14 @@ public class Cuidador extends Persona {
         }
     }
 
+    public void alimentar(Animal animal) {
+        if (puedeCuidar(animal) == true) {
+            animal.comer();
+        } else {
+            System.out.println(getNombre() + " no puede alimentar a " + animal.getNombre() + " porque no es especialista en ese tipo de animal.");
+        }
+    }
+
     @Override
     public String toString() {
         return "Cuidador: " + getNombre() +
