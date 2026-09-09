@@ -33,6 +33,20 @@ public class Jugador {
         this.categoria = categoria;
     }
 
+    public void Entrenar(){
+        System.out.println("El jugador"+NroCamiseta+" esta entrenando \n");
+    }
+
+
+    public void JugarPartido(){
+        System.out.println("El jugador"+NroCamiseta+" esta jugando un partido \n");
+    }
+
+
+    public void descansar(){
+        System.out.println("El jugador"+NroCamiseta+" esta descansando\n");
+    }
+
     @Override
     public boolean equals(Object obj) {
         Jugador aux = (Jugador) obj;
