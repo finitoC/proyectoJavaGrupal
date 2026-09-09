@@ -103,6 +103,8 @@ public abstract class Animal {
         }
     }
 
+    public abstract void hacerSonidos();
+
     @Override
     public String toString() {
         return "Animal: " + nombre +
