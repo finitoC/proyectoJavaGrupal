@@ -11,7 +11,6 @@ public abstract class Persona {
         this.legajo = legajo;
         this.salario = salario;
     }
-    
 
     public String getNombre() {
         return nombre;
