@@ -1,7 +1,7 @@
 public class Cuidador extends Persona {
     private Especialidad especialidad;
-    public Cuidador(String nombre, int dni, int legajo, double salario, Especialidad especialidad) {
-        super(nombre, dni, legajo, salario);
+    public Cuidador(String nombre, int dni, double salario, Especialidad especialidad) {
+        super(nombre, dni, salario);
         this.especialidad = especialidad;
     }
 
