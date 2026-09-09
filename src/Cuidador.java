@@ -32,10 +32,29 @@ public class Cuidador extends Persona {
         return false;
     }
 
+    public void vacunar(Animal animal) {
+        if (puedeCuidar(animal) == true) {
+            if (animal.getSalud() == false) {
+                animal.recuperarSalud();
+            } else {
+                System.out.println(animal.getNombre() + " ya está saludable.");
+            }
+        } else {
+            System.out.println(getNombre() + "no puede vacunar a " + animal.getNombre() + " porque no es especialista en ese tipo de animal.");
+        }
+    }
+
+    public void limpiar(Animal animal) {
+        if (puedeCuidar(animal) == true) {
+            animal.limpiar();
+        } else {
+            System.out.println(getNombre() + " no puede limpiar a " + animal.getNombre() + " porque no es especialista en ese tipo de animal.");
+        }
+    }
+
     @Override
     public String toString() {
         return "Cuidador: " + getNombre() +
                 " - Especialidad: " + especialidad;
     }
-
 }
