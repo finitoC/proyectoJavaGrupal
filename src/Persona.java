@@ -4,11 +4,13 @@ public abstract class Persona {
     private int dni;
     private int legajo;
     private double salario;
+    private static int proximoLegajo = 1000;
 
-    public Persona(String nombre, int dni, int legajo, double salario) {
+    public Persona(String nombre, int dni, double salario) {
         this.nombre = nombre;
         this.dni = dni;
-        this.legajo = legajo;
+        this.legajo = proximoLegajo;
+        proximoLegajo++;
         this.salario = salario;
     }
 
