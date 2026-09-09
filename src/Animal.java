@@ -102,6 +102,17 @@ public abstract class Animal {
             System.out.println(nombre + " ya está limpio.");
         }
     }
+
+    @Override
+    public String toString() {
+        return "Animal: " + nombre +
+                " - Especie: " + especie +
+                " - Hambre: " + hambre +
+                " - Salud: " + salud +
+                " - Higiene: " + higiene;
+    }
 }
+
+
 
 
