@@ -18,6 +18,7 @@ public class Cuidador extends Persona {
         System.out.println(getNombre() + " está trabajando como cuidador.");
     }
 
+    //**Ni idea si esto se puede hacer más simple**//
     private boolean puedeCuidar(Animal animal) {
         if (especialidad == Especialidad.MAMIFERO && animal instanceof Mamifero) {
             return true;

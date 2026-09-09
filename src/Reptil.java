@@ -25,32 +25,27 @@ public class Reptil extends Animal{
     }
 
     public void tomarSol() {
-        System.out.println(getNombre() + "está tomando solñ"
-        );
+        System.out.println(getNombre() + "está tomando sol");
     }
 
     public void mudarPiel() {
 
-        System.out.println(getNombre() + "está mudando la piel"
-        );
+        System.out.println(getNombre() + "está mudando la piel");
     }
 
     public void arrastrarse() {
 
         if (tienePatas == false) {
             System.out.println(
-                    getNombre() + "se está arrastrando"
-            );
+                    getNombre() + "se está arrastrando");
         } else {
-            System.out.println(getNombre() + "camina utilizando sus patas."
-            );
+            System.out.println(getNombre() + "camina utilizando sus patas.");
         }
     }
 
     @Override
-    public void emitirSonido() {
-        System.out.println(getNombre() + "emite un sonido de reptil."
-        );
+    public void hacerSonidos() {
+        System.out.println(getNombre() + "emite un sonido de reptil.");
     }
 
     @Override
