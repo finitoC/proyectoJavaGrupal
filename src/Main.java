@@ -185,7 +185,7 @@ void main() {
                                   ///(equipos,scanner);
                            break;
                        case 2:
-
+                           Equipo.cargarEntrenador(equipos, scanner);
                            break;
                    }
                }while (opcion != 0);

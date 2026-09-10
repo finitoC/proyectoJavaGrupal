@@ -9,12 +9,46 @@ public class Equipo {
     private Entrenador entrenador;
     private ArrayList<Jugador> jugadores;
 
-    public Equipo(String nombre, Deporte deporte, Entrenador entrenador) {
+
+    // CONSTRUCTOR
+    public Equipo(String nombre, Deporte deporte) {
         this.nombre = nombre;
         this.deporte = deporte;
-        this.entrenador = entrenador;
         this.jugadores = new ArrayList<>();
     }
+
+
+    // GETTERS
+    public String getNombre() {
+        return nombre;
+    }
+
+    public Deporte getDeporte() {
+        return deporte;
+    }
+
+    public Entrenador getEntrenador() {
+        return entrenador;
+    }
+
+    public ArrayList<Jugador> getJugadores() {
+        return jugadores;
+    }
+
+
+    // AGREGAR ENTRENADOR
+    public void agregarEntrenador(Entrenador entrenador) {
+        this.entrenador = entrenador;
+    }
+
+
+    // AGREGAR JUGADOR
+    public void agregarJugador(Jugador jugador) {
+        jugadores.add(jugador);
+    }
+
+
+    // CARGAR EQUIPO
     public static void cargarEquipo(ArrayList<Equipo> equipos, Scanner scanner) {
 
         System.out.println("Ingrese el nombre del equipo:");
@@ -45,57 +79,52 @@ public class Equipo {
                 ancho
         );
 
-        // ENTRENADOR
-        System.out.println("Ingrese el nombre del entrenador:");
-        String nombreEntrenador = scanner.nextLine();
-
-        System.out.println("Ingrese el DNI:");
-        int dni = scanner.nextInt();
-        scanner.nextLine();
-
-        System.out.println("Ingrese fecha de nacimiento AAAA-MM-DD:");
-        String fecha = scanner.nextLine();
-
-        LocalDate fechaNacimiento = LocalDate.parse(fecha);
-
-        Entrenador entrenador = new Entrenador(
-                nombreEntrenador,
-                fechaNacimiento,
-                dni
-        );
-
-        // JUGADOR
-        System.out.println("Ingrese el deporte del jugador:");
-        String deporteJugador = scanner.nextLine();
-
-        System.out.println("Ingrese numero de camiseta:");
-        int camiseta = scanner.nextInt();
-        scanner.nextLine();
-
-        System.out.println("Ingrese categoria:");
-        System.out.println("INFANTILES - JUVENILES - ADULTOS - VITALICIOS");
-        String categoriaTexto = scanner.nextLine();
-
-        Categoria categoria =
-                Categoria.valueOf(categoriaTexto.toUpperCase());
-
-        Jugador jugador = new Jugador(
-                deporteJugador,
-                camiseta,
-                categoria
-        );
-
         // CREAR EQUIPO
         Equipo equipo = new Equipo(
                 nombreEquipo,
-                deporte,
-                entrenador
+                deporte
         );
 
-        equipo.jugadores.add(jugador);
-
+        // GUARDARLO
         equipos.add(equipo);
 
         System.out.println("Equipo cargado correctamente.");
+    }
+
+
+    // CARGAR ENTRENADOR EN UN EQUIPO EXISTENTE
+    public static void cargarEntrenador(ArrayList<Equipo> equipos, Scanner scanner) {
+
+        System.out.println("Ingrese el nombre del equipo:");
+        String nombreEquipo = scanner.nextLine();
+
+        for (Equipo equipo : equipos) {
+
+            if (equipo.getNombre().equalsIgnoreCase(nombreEquipo)) {
+
+                System.out.println("Nombre del entrenador:");
+                String nombre = scanner.nextLine();
+
+                System.out.println("DNI:");
+                int dni = scanner.nextInt();
+                scanner.nextLine();
+
+                System.out.println("Fecha de nacimiento (AAAA-MM-DD):");
+                LocalDate fecha = LocalDate.parse(scanner.nextLine());
+
+                Entrenador entrenador = new Entrenador(
+                        nombre,
+                        fecha,
+                        dni
+                );
+
+                equipo.agregarEntrenador(entrenador);
+
+                System.out.println("Entrenador agregado correctamente.");
+                return;
+            }
+        }
+
+        System.out.println("No se encontro el equipo.");
     }
 }
