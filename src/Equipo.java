@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.Locale;
 import java.util.Scanner;
 import java.time.LocalDate;
 
@@ -42,10 +43,7 @@ public class Equipo {
     }
 
 
-    // AGREGAR JUGADOR
-    public void agregarJugador(Jugador jugador) {
-        jugadores.add(jugador);
-    }
+
 
 
     // CARGAR EQUIPO
@@ -128,12 +126,76 @@ public class Equipo {
         System.out.println("No se encontro el equipo.");
     }
    
-    public void agregarJugador(Jugador agregado) {
+    public boolean agregarJugador(Jugador agregado) {
 
-        if (this.deporte.equals(agregado.getDeporte())){
+        if (this.deporte.getNombre().equals(agregado.getDeporte().getNombre())){
             jugadores.add(agregado);
+            return  true;
 
         }
 
+        return false;
+    }
+
+    public static void cargarJugador(ArrayList<Equipo> equipos, Scanner scanner) {
+
+        System.out.println("Ingrese el nombre del equipo:");
+        String nombreEquipo = scanner.nextLine();
+
+        for (Equipo equipo : equipos) {
+
+            if (equipo.getNombre().equalsIgnoreCase(nombreEquipo)) {
+
+                System.out.println("Nr de camiseta del jugador :\n");
+                int  Camiseta = scanner.nextInt();
+                scanner.nextLine();
+
+                System.out.println("Que nombre tiene este jugador:\n");
+                String Nnombre = scanner.nextLine();
+
+
+                System.out.println("Que deporte judara este jugador:\n");
+                String deporte = scanner.nextLine();
+
+                System.out.println("De que categoria es?:\n");
+                String texto = scanner.nextLine();
+
+                System.out.println("Cual es el nombre del deporte?:");
+                String nombreDeporte = scanner.nextLine();
+
+                System.out.println("Cual es la descripcion del deporte?:");
+                String descripcion = scanner.nextLine();
+
+                System.out.println("El deporte utiliza pelota? Si/No:");
+                String PelotaSiNo = scanner.nextLine();
+
+                System.out.println("Cual es el largo de la cancha?:");
+                int largo = scanner.nextInt();
+                scanner.nextLine();
+
+                System.out.println("Cual es el ancho de la cancha?:");
+                int ancho = scanner.nextInt();
+                scanner.nextLine();
+
+                Categoria categoria = Categoria.valueOf(texto.toUpperCase());
+
+                Deporte auxx = new Deporte(nombreDeporte,descripcion,PelotaSiNo,largo,ancho);
+
+                Jugador aux = new Jugador(auxx,categoria, Camiseta, Nnombre);
+
+                if(equipo.agregarJugador(aux) == true){
+
+
+                    System.out.println("Jugador agregado correctamente.");
+                }else {
+
+                    System.out.println("El jugador no se pudo agregar ya no juega este deporte.");
+                }
+
+                return;
+            }
+        }
+
+        System.out.println("No se encontro el equipo.");
     }
 }

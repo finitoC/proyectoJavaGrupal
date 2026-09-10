@@ -172,9 +172,9 @@ void main() {
 
            case 2:
                System.out.println("-----SISTEMA DE GESTION CLUB DEPORTIVO-----");
-               System.out.println("Agregar un equipo");
-               System.out.println("Agregar un jugador a un equipo ya creado");
-               System.out.println("agregar un entrenador a un equipo ya creado");
+               System.out.println("Agregar un equipo__1");
+               System.out.println("Agregar un jugador a un equipo ya creado__2");
+               System.out.println("agregar un entrenador a un equipo ya creado__3");
                System.out.println("--------------------------------------------");
                System.out.println("su opcion: "); opcion = scanner.nextInt();
                scanner.nextLine();
@@ -185,6 +185,11 @@ void main() {
                                   ///(equipos,scanner);
                            break;
                        case 2:
+
+                           Equipo.cargarJugador(equipos,scanner);
+
+                           break;
+                       case 3:
                            Equipo.cargarEntrenador(equipos, scanner);
                            break;
                    }
