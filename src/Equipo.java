@@ -8,18 +8,20 @@ public class Equipo {
     private String nombre;
     private Deporte deporte;
     private Entrenador entrenador;
-    private ArrayList<Jugador> jugadores;
+    private Jugador[] jugadores;
+    private int validosJugadores;
 
 
-    // CONSTRUCTOR
+
     public Equipo(String nombre, Deporte deporte) {
         this.nombre = nombre;
         this.deporte = deporte;
-        this.jugadores = new ArrayList<>();
+        this.jugadores = new Jugador[20];
+        this.validosJugadores = 0;
     }
 
 
-    // GETTERS
+
     public String getNombre() {
         return nombre;
     }
@@ -32,12 +34,11 @@ public class Equipo {
         return entrenador;
     }
 
-    public ArrayList<Jugador> getJugadores() {
+    public Jugador[] getJugadores() {
         return jugadores;
     }
 
 
-    // AGREGAR ENTRENADOR
     public void agregarEntrenador(Entrenador entrenador) {
         this.entrenador = entrenador;
     }
@@ -46,13 +47,17 @@ public class Equipo {
 
 
 
-    // CARGAR EQUIPO
-    public static void cargarEquipo(ArrayList<Equipo> equipos, Scanner scanner) {
+
+    public static int cargarEquipo(Equipo[] equipos, int validos, Scanner scanner) {
+
+        if (validos >= equipos.length) {
+            System.out.println("No hay espacio para mas equipos.");
+            return validos;
+        }
 
         System.out.println("Ingrese el nombre del equipo:");
         String nombreEquipo = scanner.nextLine();
 
-        // DEPORTE
         System.out.println("Ingrese el nombre del deporte:");
         String nombreDeporte = scanner.nextLine();
 
@@ -77,28 +82,26 @@ public class Equipo {
                 ancho
         );
 
-        // CREAR EQUIPO
-        Equipo equipo = new Equipo(
-                nombreEquipo,
-                deporte
-        );
+        Equipo equipo = new Equipo(nombreEquipo, deporte);
 
-        // GUARDARLO
-        equipos.add(equipo);
+        equipos[validos] = equipo;
+        validos++;
 
         System.out.println("Equipo cargado correctamente.");
+
+        return validos;
     }
 
 
-    // CARGAR ENTRENADOR EN UN EQUIPO EXISTENTE
-    public static void cargarEntrenador(ArrayList<Equipo> equipos, Scanner scanner) {
+
+    public static void cargarEntrenador(Equipo[] equipos, int validos, Scanner scanner) {
 
         System.out.println("Ingrese el nombre del equipo:");
         String nombreEquipo = scanner.nextLine();
 
-        for (Equipo equipo : equipos) {
+        for (int i = 0; i < validos; i++) {
 
-            if (equipo.getNombre().equalsIgnoreCase(nombreEquipo)) {
+            if (equipos[i].getNombre().equalsIgnoreCase(nombreEquipo)) {
 
                 System.out.println("Nombre del entrenador:");
                 String nombre = scanner.nextLine();
@@ -116,7 +119,7 @@ public class Equipo {
                         dni
                 );
 
-                equipo.agregarEntrenador(entrenador);
+                equipos[i].agregarEntrenador(entrenador);
 
                 System.out.println("Entrenador agregado correctamente.");
                 return;
@@ -125,71 +128,80 @@ public class Equipo {
 
         System.out.println("No se encontro el equipo.");
     }
-   
     public boolean agregarJugador(Jugador agregado) {
 
-        if (this.deporte.getNombre().equals(agregado.getDeporte().getNombre())){
-            jugadores.add(agregado);
-            return  true;
+        if (this.deporte.getNombre().equals(agregado.getDeporte().getNombre())) {
 
+            if (validosJugadores < jugadores.length) {
+
+                jugadores[validosJugadores] = agregado;
+                validosJugadores++;
+
+                return true;
+            }
         }
 
         return false;
     }
 
-    public static void cargarJugador(ArrayList<Equipo> equipos, Scanner scanner) {
+    public static void cargarJugador(Equipo[] equipos, int validosEquipos, Scanner scanner) {
 
         System.out.println("Ingrese el nombre del equipo:");
         String nombreEquipo = scanner.nextLine();
 
-        for (Equipo equipo : equipos) {
+        for (int i = 0; i < validosEquipos; i++) {
 
-            if (equipo.getNombre().equalsIgnoreCase(nombreEquipo)) {
+            if (equipos[i].getNombre().equalsIgnoreCase(nombreEquipo)) {
 
-                System.out.println("Nr de camiseta del jugador :\n");
-                int  Camiseta = scanner.nextInt();
+                System.out.println("Nr de camiseta del jugador:");
+                int Camiseta = scanner.nextInt();
                 scanner.nextLine();
-
-                System.out.println("Que nombre tiene este jugador:\n");
+                System.out.println("Que nombre tiene este jugador:");
                 String Nnombre = scanner.nextLine();
-
-
-                System.out.println("Que deporte judara este jugador:\n");
+                System.out.println("Que deporte jugara este jugador:");
                 String deporte = scanner.nextLine();
-
-                System.out.println("De que categoria es?:\n");
+                System.out.println("De que categoria es?:");
                 String texto = scanner.nextLine();
-
                 System.out.println("Cual es el nombre del deporte?:");
                 String nombreDeporte = scanner.nextLine();
-
                 System.out.println("Cual es la descripcion del deporte?:");
                 String descripcion = scanner.nextLine();
-
                 System.out.println("El deporte utiliza pelota? Si/No:");
                 String PelotaSiNo = scanner.nextLine();
-
                 System.out.println("Cual es el largo de la cancha?:");
                 int largo = scanner.nextInt();
                 scanner.nextLine();
-
                 System.out.println("Cual es el ancho de la cancha?:");
                 int ancho = scanner.nextInt();
                 scanner.nextLine();
 
-                Categoria categoria = Categoria.valueOf(texto.toUpperCase());
+                Categoria categoria =
+                        Categoria.valueOf(texto.toUpperCase());
 
-                Deporte auxx = new Deporte(nombreDeporte,descripcion,PelotaSiNo,largo,ancho);
+                Deporte auxx = new Deporte(
+                        nombreDeporte,
+                        descripcion,
+                        PelotaSiNo,
+                        largo,
+                        ancho
+                );
 
-                Jugador aux = new Jugador(auxx,categoria, Camiseta, Nnombre);
+                Jugador aux = new Jugador(
+                        auxx,
+                        categoria,
+                        Camiseta,
+                        Nnombre
+                );
 
-                if(equipo.agregarJugador(aux) == true){
-
+                if (equipos[i].agregarJugador(aux) == true) {
 
                     System.out.println("Jugador agregado correctamente.");
-                }else {
 
-                    System.out.println("El jugador no se pudo agregar ya no juega este deporte.");
+                } else {
+
+                    System.out.println(
+                            "El jugador no se pudo agregar ya que no juega este deporte."
+                    );
                 }
 
                 return;

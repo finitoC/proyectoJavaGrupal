@@ -16,8 +16,9 @@ void main() {
     cuidadoresArray[2] = cuidador3;
     int cantCuidadores = 0;
     int opcion = 1;
+    int validosEquipos = 0;
     Scanner scanner = new Scanner(System.in);
-    ArrayList<Equipo> equipos = new ArrayList<>();
+    Equipo[] equipos = new Equipo[10];
 
 
 
@@ -171,27 +172,32 @@ void main() {
            break;
 
            case 2:
-               System.out.println("-----SISTEMA DE GESTION CLUB DEPORTIVO-----");
-               System.out.println("Agregar un equipo__1");
-               System.out.println("Agregar un jugador a un equipo ya creado__2");
-               System.out.println("agregar un entrenador a un equipo ya creado__3");
-               System.out.println("--------------------------------------------");
-               System.out.println("su opcion: "); opcion = scanner.nextInt();
-               scanner.nextLine();
+
                do{
+                   System.out.println("-----SISTEMA DE GESTION CLUB DEPORTIVO-----");
+                   System.out.println("Agregar un equipo__1");
+                   System.out.println("Agregar un jugador a un equipo ya creado__2");
+                   System.out.println("agregar un entrenador a un equipo ya creado__3");
+                   System.out.println("--------------------------------------------");
+                   System.out.println("su opcion: "); opcion = scanner.nextInt();
+                   scanner.nextLine();
                    switch (opcion){
                        case 1:
-                          Equipo.cargarEquipo(equipos,scanner);
+                          validosEquipos = Equipo.cargarEquipo(equipos,validosEquipos,scanner);
                                   ///(equipos,scanner);
                            break;
                        case 2:
 
-                           Equipo.cargarJugador(equipos,scanner);
+                           Equipo.cargarJugador(equipos, validosEquipos, scanner);
 
                            break;
                        case 3:
-                           Equipo.cargarEntrenador(equipos, scanner);
+                           Equipo.cargarEntrenador(equipos, validosEquipos, scanner);
                            break;
+                       case 0:
+                           System.out.println("volviendo...");
+                       default:
+                           System.out.println("opcion invalida");
                    }
                }while (opcion != 0);
                break;
