@@ -1,7 +1,10 @@
+import java.util.ArrayList;
+
 public class Jugador {
     private String Deporte;
     private int  NroCamiseta;
     private Categoria categoria;
+    
 
     public String getDeporte() {
         return Deporte;
@@ -54,12 +57,7 @@ public class Jugador {
 public void cargarJugador()
 
 
-    @Override
-    public boolean equals(Object obj) {
-        Jugador aux = (Jugador) obj;
 
-        return this.Deporte.equals(aux.Deporte);
-    }
 
 
 }

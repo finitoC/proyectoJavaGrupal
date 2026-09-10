@@ -127,4 +127,13 @@ public class Equipo {
 
         System.out.println("No se encontro el equipo.");
     }
+   
+    public void agregarJugador(Jugador agregado) {
+
+        if (this.deporte.equals(agregado.getDeporte())){
+            jugadores.add(agregado);
+
+        }
+
+    }
 }
