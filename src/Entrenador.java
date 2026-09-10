@@ -34,4 +34,25 @@ public class Entrenador {
     public void setDni(int dni) {
         Dni = dni;
     }
+
+    public void CambioDePLantilla(){
+        System.out.println("El Entrenador"+Nombre+"cambio la plantilla \n");
+    }
+
+    public void  Entrenamiento(){
+        System.out.println("El Entrenador"+Nombre+"puso a los jugadores a hacer burpees \n");
+    }
+
+    public void tacticasDefesiva(){
+        System.out.println("El Entrenador"+Nombre+"cambio la tactica a una defensiva \n");
+    }
+
+
+    public void tacticasAtaque (){
+        System.out.println("El Entrenador"+Nombre+"cambio la tactica a una priorizando el ataque  \n");
+    }
+
+    public void tacticasHARAMBALL(){
+        System.out.println("El Entrenador"+Nombre+"cambio la tactica a la HARAMBALL \n");
+    }
 }

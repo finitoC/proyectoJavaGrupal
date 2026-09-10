@@ -47,10 +47,19 @@ public class Jugador {
         System.out.println("El jugador"+NroCamiseta+" esta descansando\n");
     }
 
+    public void PracticaFisica(){
+        System.out.println("El jugador"+NroCamiseta+" esta Entrenando en el gimnasio\n");
+    }
+
+
+
+
     @Override
     public boolean equals(Object obj) {
         Jugador aux = (Jugador) obj;
 
         return this.Deporte.equals(aux.Deporte);
     }
+
+
 }
