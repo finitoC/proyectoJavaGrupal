@@ -20,6 +20,7 @@ void main() {
     ArrayList<Equipo> equipos = new ArrayList<>();
 
 
+
   do{
       System.out.println("¿A que sistema desea ingresar?");
       System.out.println("1-Sistema zoologico");
@@ -180,7 +181,8 @@ void main() {
                do{
                    switch (opcion){
                        case 1:
-
+                          Equipo.cargarEquipo(equipos,scanner);
+                                  ///(equipos,scanner);
                            break;
                        case 2:
 

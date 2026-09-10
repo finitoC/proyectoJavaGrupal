@@ -51,7 +51,7 @@ public class Jugador {
         System.out.println("El jugador"+NroCamiseta+" esta Entrenando en el gimnasio\n");
     }
 
-
+public void cargarJugador()
 
 
     @Override
