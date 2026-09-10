@@ -1,8 +1,6 @@
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
-import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
 import java.util.Scanner;
+import java.time.LocalDate;
 
 public class Equipo {
 
@@ -20,29 +18,53 @@ public class Equipo {
     public static void cargarEquipo(ArrayList<Equipo> equipos, Scanner scanner) {
 
         System.out.println("Ingrese el nombre del equipo:");
-        String nombre = scanner.nextLine();
+        String nombreEquipo = scanner.nextLine();
 
-        System.out.println("Ingrese el deporte:");
+        // DEPORTE
+        System.out.println("Ingrese el nombre del deporte:");
         String nombreDeporte = scanner.nextLine();
 
-        // Esto depende de cómo esté hecha tu clase Deporte
-        Deporte deporte = new Deporte(nombreDeporte);
+        System.out.println("Ingrese una descripcion:");
+        String descripcion = scanner.nextLine();
 
+        System.out.println("¿Usa pelota? Si/No:");
+        String pelotaSiNo = scanner.nextLine();
+
+        System.out.println("Ingrese el largo de la cancha:");
+        int largo = scanner.nextInt();
+
+        System.out.println("Ingrese el ancho de la cancha:");
+        int ancho = scanner.nextInt();
+        scanner.nextLine();
+
+        Deporte deporte = new Deporte(
+                nombreDeporte,
+                descripcion,
+                pelotaSiNo,
+                largo,
+                ancho
+        );
+
+        // ENTRENADOR
         System.out.println("Ingrese el nombre del entrenador:");
         String nombreEntrenador = scanner.nextLine();
 
-        System.out.println("Ingrese el DNI del entrenador:");
+        System.out.println("Ingrese el DNI:");
         int dni = scanner.nextInt();
         scanner.nextLine();
 
-        System.out.println("Ingrese la fecha de nacimiento (AAAA-MM-DD):");
-        String fechaTexto = scanner.nextLine();
+        System.out.println("Ingrese fecha de nacimiento AAAA-MM-DD:");
+        String fecha = scanner.nextLine();
 
-        LocalDate fechaNacimiento = LocalDate.parse(fechaTexto);
+        LocalDate fechaNacimiento = LocalDate.parse(fecha);
 
-        Entrenador entrenador =
-                new Entrenador(nombreEntrenador, fechaNacimiento, dni);
+        Entrenador entrenador = new Entrenador(
+                nombreEntrenador,
+                fechaNacimiento,
+                dni
+        );
 
+        // JUGADOR
         System.out.println("Ingrese el deporte del jugador:");
         String deporteJugador = scanner.nextLine();
 
@@ -51,17 +73,29 @@ public class Equipo {
         scanner.nextLine();
 
         System.out.println("Ingrese categoria:");
+        System.out.println("INFANTILES - JUVENILES - ADULTOS - VITALICIOS");
         String categoriaTexto = scanner.nextLine();
 
-        Categoria categoria = Categoria.valueOf(categoriaTexto.toUpperCase());
+        Categoria categoria =
+                Categoria.valueOf(categoriaTexto.toUpperCase());
 
-        Jugador jugador =
-                new Jugador(deporteJugador, camiseta, categoria);
+        Jugador jugador = new Jugador(
+                deporteJugador,
+                camiseta,
+                categoria
+        );
 
-        Equipo equipo =
-                new Equipo(nombre, deporte, entrenador, jugador);
+        // CREAR EQUIPO
+        Equipo equipo = new Equipo(
+                nombreEquipo,
+                deporte,
+                entrenador
+        );
+
+        equipo.jugadores.add(jugador);
 
         equipos.add(equipo);
 
         System.out.println("Equipo cargado correctamente.");
     }
+}
